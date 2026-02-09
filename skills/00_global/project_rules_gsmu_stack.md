@@ -43,3 +43,13 @@ Reducir reprocesos, decisiones improvisadas y stacks inconsistentes.
   - cómo build
   - cómo release
   - cómo configurar .env
+
+## Gate de decisiones
+
+Si durante el análisis o ejecución el agente detecta una alternativa potencialmente mejor,
+debe:
+- notificar como "PROPUESTA DE MEJORA"
+- explicar impacto y trade-offs
+- esperar aprobación explícita del usuario antes de ejecutar
+
+

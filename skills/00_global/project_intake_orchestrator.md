@@ -13,6 +13,22 @@ Transformar una idea en:
 - Máximo recomendado: 8–14 preguntas (con branching).
 - Si `project_context.md` ya contiene una respuesta, NO preguntar.
 
+## Skill Registry & Routing (obligatorio)
+- La selección de skills se hace por `skills/registry.yml` (IDs).
+- Si un skill es externo, se debe usar el wrapper GSMU en `skills/95_external_wrappers/` si existe.
+- Si NO existe wrapper: crear un wrapper mínimo antes de aplicar el skill externo.
+
+## Routing base (determinístico)
+- UI pública / landing / marketing:
+  - `ui.frontend-design` -> (si React/Next) `react.vercel-best-practices` -> `ops.changelog-generator`
+- Dashboard / admin / herramienta interna:
+  - `ui.interface-design` -> (si React/Next) `react.vercel-best-practices` -> `backend.error-handling-patterns`
+- Backend/API:
+  - `backend.api-design-principles` -> `backend.error-handling-patterns` -> (si aplica) `db.postgresql`
+- Debug:
+  - `workflow.systematic-debugging` (siempre primero)
+
+
 ---
 
 ## Diagrama de flujo (alto nivel)

@@ -1,0 +1,76 @@
+skills:
+  - id: gsmu.orchestrator
+    source: internal
+    path: skills/00_global/project_intake_orchestrator.md
+    when_to_use: "Siempre. Primera ejecución."
+    outputs: ["project_context.md", "project_brief.md", "skill_plan"]
+
+  - id: ui.frontend-design
+    source: external
+    url: https://github.com/anthropics/claude-code/blob/main/plugins/frontend-design/skills/frontend-design/SKILL.md
+    pinned_ref: main
+    when_to_use: "Landing pages, marketing sites, UI pública."
+    tags: ["ui", "frontend", "design"]
+
+  - id: ui.interface-design
+    source: external
+    url: https://skills.sh/dammyjay93/interface-design/interface-design
+    pinned_ref: "2026-01-20"
+    when_to_use: "Dashboards, admin panels, SaaS apps, tools."
+    tags: ["ui", "product", "design-system"]
+
+  - id: react.vercel-best-practices
+    source: external
+    url: https://skills.sh/vercel-labs/agent-skills/vercel-react-best-practices
+    pinned_ref: "2026-01-16"
+    when_to_use: "React/Next.js: performance, arquitectura, refactor."
+    tags: ["react", "nextjs", "performance"]
+
+  - id: workflow.brainstorming
+    source: external
+    url: https://github.com/obra/superpowers
+    pinned_ref: main
+    when_to_use: "Antes de escribir código cuando hay ambigüedad."
+    tags: ["workflow", "requirements"]
+
+  - id: workflow.systematic-debugging
+    source: external
+    url: https://github.com/obra/superpowers
+    pinned_ref: main
+    when_to_use: "Bugs, comportamientos raros, issues intermitentes."
+    tags: ["debug", "workflow"]
+
+  - id: ops.changelog-generator
+    source: external
+    url: https://github.com/ComposioHQ/awesome-claude-skills/blob/master/changelog-generator/SKILL.md
+    pinned_ref: master
+    when_to_use: "Release notes y changelog de cara a cliente."
+    tags: ["release", "docs"]
+
+  - id: backend.api-design-principles
+    source: external
+    url: https://github.com/wshobson/agents
+    pinned_ref: main
+    when_to_use: "Diseño/review de APIs REST/GraphQL."
+    tags: ["api", "backend"]
+
+  - id: backend.error-handling-patterns
+    source: external
+    url: https://github.com/wshobson/agents/blob/main/plugins/developer-essentials/skills/error-handling-patterns/SKILL.md
+    pinned_ref: main
+    when_to_use: "Estrategias de errores en Node/PHP/etc."
+    tags: ["backend", "quality"]
+
+  - id: db.postgresql
+    source: external
+    url: https://github.com/wshobson/agents/blob/main/plugins/database-design/skills/postgresql/SKILL.md
+    pinned_ref: main
+    when_to_use: "Proyecto con Postgres o migración a Postgres."
+    tags: ["db", "postgres"]
+
+  - id: llm.prompt-engineering-patterns
+    source: external
+    url: https://github.com/wshobson/agents
+    pinned_ref: main
+    when_to_use: "Optimización de prompts/workflows de agentes."
+    tags: ["llm", "prompting"]

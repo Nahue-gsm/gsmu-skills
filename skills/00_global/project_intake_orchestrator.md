@@ -5,29 +5,30 @@ Transformar una idea en:
 1) Decisiones generales cerradas (tipo + stack + restricciones)
 2) `project_context.md` completo
 3) `project_brief.md`
-4) Lista de skills específicas a ejecutar
+4) Contexto suficiente para que el Skill Router seleccione skills específicas
+
+---
 
 ## Hard Rules
 - No generar código de producción en esta fase.
+- No decidir orden de ejecución de skills.
 - Preguntar SOLO lo que cambie arquitectura, stack, persistencia, deploy, costos o riesgos.
 - Máximo recomendado: 8–14 preguntas (con branching).
 - Si `project_context.md` ya contiene una respuesta, NO preguntar.
 
+---
+
 ## Skill Registry & Routing (obligatorio)
-- La selección de skills se hace por `skills/registry.yml` (IDs).
-- Si un skill es externo, se debe usar el wrapper GSMU en `skills/95_external_wrappers/` si existe.
-- Si NO existe wrapper: crear un wrapper mínimo antes de aplicar el skill externo.
-
-## Routing base (determinístico)
-- UI pública / landing / marketing:
-  - `ui.frontend-design` -> (si React/Next) `react.vercel-best-practices` -> `ops.changelog-generator`
-- Dashboard / admin / herramienta interna:
-  - `ui.interface-design` -> (si React/Next) `react.vercel-best-practices` -> `backend.error-handling-patterns`
-- Backend/API:
-  - `backend.api-design-principles` -> `backend.error-handling-patterns` -> (si aplica) `db.postgresql`
-- Debug:
-  - `workflow.systematic-debugging` (siempre primero)
-
+- La selección de skills se basa en `skills/registry.yml`.
+- El enrutamiento determinístico de skills se resuelve exclusivamente en:
+  - `skills/00_global/skill_router.md`
+- Este archivo (intake) NO define:
+  - orden de ejecución
+  - combinación de skills
+- Si un skill es externo, el router debe usar un wrapper GSMU en:
+  - `skills/95_external_wrappers/` (si existe)
+- Si NO existe wrapper GSMU para un skill externo:
+  - se debe crear uno mínimo antes de su aplicación.
 
 ---
 
@@ -40,28 +41,33 @@ START
   |
   v
 ¿Falta info crítica?
-  |--- no ---> [Generar/actualizar Project Brief] ---> [Seleccionar skills específicas] ---> END
+  |--- no ---> [Generar/actualizar Project Brief] ---> END
   |
-  '--- sí ---> [Fase 1: Definir QUÉ] ---> [Fase 2: Definir CON QUÉ] ---> [Resumen y cierre] ---> [Project Brief + skills] ---> END
+  '--- sí ---> [Fase 1: Definir QUÉ] ---> [Fase 2: Definir CON QUÉ] ---> [Fase 3: Cierre] ---> END
+
+(La selección de skills ocurre luego mediante Skill Router)
 
 ---
 
 ## Fase 1 — Definir QUÉ vamos a hacer (clasificación)
 Preguntas (condicionales):
+
 1) Tipo de proyecto:
    - Desktop (Electron)
    - Web (Landing / Ecommerce / Panel)
-   - Backend/API
-   - Automatización/Scripts
+   - Backend / API
+   - Automatización / Scripts
+
 2) Caso de uso y entorno:
    - uso interno / cliente final
    - una PC / múltiples puestos / multi-sucursal
-3) Restricciones:
+
+3) Restricciones principales:
    - offline requerido (sí/no)
    - hardware especial (impresoras, lector QR, tablets, etc.)
-   - plazos y riesgos (corto/medio/largo)
+   - plazos y riesgos (corto / medio / largo)
 
-Salida mínima de Fase 1:
+### Salida mínima de Fase 1
 - Project type
 - Target users / scope
 - Constraints principales
@@ -69,54 +75,72 @@ Salida mínima de Fase 1:
 ---
 
 ## Fase 2 — Definir CON QUÉ lo vamos a hacer (stack)
+
 ### Si es Desktop (Electron)
 Preguntar:
 - UI: Vanilla o React
 - Lenguaje: JS o TS
 - Ventanas: single window (SPA) o multi-ventana
-- Persistencia: local (SQLite) / nube (API + MySQL) / híbrido (sync)
-- Requisitos: impresión (ESC/POS), export Excel/PDF, roles/usuarios
+- Persistencia:
+  - local (SQLite)
+  - nube (API + MySQL)
+  - híbrido (sync)
+- Requisitos:
+  - impresión (ESC/POS)
+  - export Excel / PDF
+  - roles / usuarios
 
 **Default GSMU (si no se especifica):**
 - Electron + React + TypeScript
 - SQLite local con better-sqlite3
 - Packaging con electron-builder
 
+---
+
 ### Si es Web
 Preguntar:
-- Hosting: ¿PHP disponible? ¿Node? ¿solo estático?
-- ¿Necesita DB o solo contacto?
+- Hosting disponible:
+  - PHP
+  - Node
+  - solo estático
+- ¿Necesita base de datos o solo contacto?
 - SEO / performance / analytics
-- Admin/panel: sí/no
+- ¿Admin / panel interno? (sí/no)
 
 ---
 
 ## Fase 3 — Cierre (resumen y decisiones)
-1) Presentar 1 recomendación principal y 1 alternativa.
+1) Presentar:
+   - 1 recomendación principal
+   - 1 alternativa razonable (si aplica)
 2) Confirmar decisiones finales (sin extenderse).
-3) Escribir/actualizar:
+3) Declarar explícitamente:
+   - tipo de proyecto
+   - tipo de UI (si aplica)
+   - stack confirmado
+   - restricciones finales
+   - **stage del proyecto**: `MVP | Iteración | Refactor | Release`
+4) Escribir o actualizar:
    - `project_context.md`
-   - `project_brief.md` (usando template)
+   - `project_brief.md` (usando template oficial)
 
 ---
 
-## Fase 4 — Selección de skills específicas
-Con las decisiones finales, listar skills a ejecutar, por ejemplo:
+## Fase 4 — Preparación para selección de skills
+El intake **NO selecciona skills concretas**.
 
-- Desktop Electron:
-  - `10_desktop_electron/electron_react_baseline.md` o `electron_vanilla_baseline.md`
-  - `10_desktop_electron/ipc_security_preload.md`
-  - `10_desktop_electron/db_local_better_sqlite3.md` (si SQLite local)
-  - `10_desktop_electron/packaging_electron_builder.md` (si packaging)
-  - `10_desktop_electron/printing_escpos.md` (si impresión térmica)
+Su responsabilidad es garantizar que:
+- `project_context.md` contiene toda la información necesaria
+- las decisiones están cerradas y explícitas
+- el proyecto puede ser enrutado automáticamente por el Skill Router
 
-- Web:
-  - `20_web/landing_baseline.md`
-  - `20_web/php_backend_baseline.md` (si aplica)
+La selección y el orden de ejecución de skills se resuelven luego mediante:
+- `skills/00_global/skill_router.md`
 
 ---
 
 ## Output final (obligatorio)
 - Un `project_brief.md` completo
-- `project_context.md` actualizado
-- Lista de skills a ejecutar en orden
+- `project_context.md` actualizado y consistente
+- Contexto suficiente para generar un `skill_plan` vía Skill Router
+

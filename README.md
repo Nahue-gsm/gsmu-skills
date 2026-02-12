@@ -16,6 +16,21 @@ Este repo contiene un set de *skills* reutilizables para agentes, con una forma 
   - `project_brief.md` (usando el template)
   - una lista de skills específicas a aplicar
 
+## Regla clave para que cualquier IA agarre el proyecto sin repetir contexto
+
+Todo proyecto debe tener **un único “Start Here”** que apunte al resto de la documentación.
+
+**Orden de lectura (fuente de verdad):**
+1) `AI_START.md` (o `docs/ai/AI_START.md`)
+2) `project_context.md`
+3) `project_brief.md`
+4) `docs/**` (y en particular los mapas que el proyecto declare)
+
+Si `AI_START.md` no existe, el agente debe ejecutarlo/crearlo usando el skill:
+`skills/00_global/project_ai_start_manifest.md`
+
+Esto evita que el agente **invente** stack, estructura de docs, o suponga si la DB es local/nube.
+
 ## Estructura
 - `skills/00_global/` reglas y orquestación (intake + templates)
 - `skills/10_desktop_electron/` baselines Electron + módulos (DB, packaging, impresión, IPC)

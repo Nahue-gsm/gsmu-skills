@@ -9,6 +9,15 @@ Este archivo se lee **antes de ejecutar cualquier skill**.
 
 ## Secuencia obligatoria de arranque
 
+### Paso 0 — Leer “Start Here” (si existe)
+Leer primero, en este orden (si existen):
+1) `AI_START.md`
+2) `docs/ai/AI_START.md`
+
+Reglas:
+- Si existe `AI_START.md`, **NO adivinar** stack, DB, rutas, ni estructura: usar ese archivo como fuente de verdad.
+- Si NO existe, crear uno ejecutando: `skills/00_global/project_ai_start_manifest.md`.
+
 ### Paso 1 — Leer contexto
 Leer en este orden:
 1) `project_context.md`

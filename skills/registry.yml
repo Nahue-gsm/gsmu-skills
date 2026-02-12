@@ -5,6 +5,18 @@ skills:
     when_to_use: "Siempre. Primera ejecución."
     outputs: ["project_context.md", "project_brief.md", "skill_plan"]
 
+  - id: gsmu.project-ai-start
+    source: internal
+    path: skills/00_global/project_ai_start_manifest.md
+    when_to_use: "Al inicio de cualquier proyecto para crear/actualizar AI_START.md y evitar que el agente adivine estructura/stack/DB."
+    outputs: ["AI_START.md", "docs/ai/AI_START.md"]
+
+  - id: gsmu.ui_interface_dashboard
+    source: internal
+    path: skills/10_desktop_electron/ui_interface_dashboard.md
+    when_to_use: "Electron vanilla: dashboard base guiado por imagen de referencia."
+    tags: ["ui", "electron", "dashboard"]
+
   - id: ui.frontend-design
     source: external
     url: https://github.com/anthropics/claude-code/blob/main/plugins/frontend-design/skills/frontend-design/SKILL.md
